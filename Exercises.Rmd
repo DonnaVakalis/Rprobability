@@ -6,7 +6,7 @@ output: html_notebook
  
 
 ```{r}
-## 1.8 Probability and Counting ========
+## 1.8 Probability and counting ========
 
 # Page 29: Vectors
 v <- c(1,3,5,7,9,11)
@@ -15,9 +15,49 @@ v[-c(1,3)]
 v2 <- 1/(1:100)^2
 
 # Page 30 Factorials  
+choose(10,2)
+choose(1000000,1000)
+lchoose(1000000,1000)
+factorial(1000)
+lfactorial(1000)
 
 # Page 30-31 Sampling and simulation
+n <- 10; k <- 6
+sample(n,k, replace =TRUE)
+sample(letters,k)
+sample(5,5,replace=TRUE,prob = c(0.6,0.1,0.1,0.1,0.1))
+
+# Page 31 Matching problem simulation
+n <- 10;        # number of cards
+r <- 1       # number of times running experiment
+results<- replicate(r,sample(n)==(1:n)) # shuffle and count matches
+number.successes<-sum(results>=1) # sum number of matches
+proportion.matches = number.successes/(r*n) # proportion of matches to total number of experiments
+
+# Page 32 Birthday problem
+qbirthday(0.5)        # number of people needed to have probability of at least 50% of at least one match
+pbirthday(23,coincident = 3)  # probability of a triple birthday match given 23 people 
+b <- sample (365,23,replace=TRUE)  # assign birthdays to 23 people, where each of 365 "days"" has equal probability
+table(b)
+r <- replicate(10^4, max(table(sample(365,23,replace=TRUE))))
+sum(r>=2)/10^4 # how many days had at least two people born on that day, on average after 10^4 runs?
 
 ```
 
+```{r}
+## 2.10 Conditional probability ========
+
+# Page 80: Simulating the frequentist interpretation
+
+
+```
  
+```{r}
+## 3.11  Random variables and their distributions ========
+
+```
+
+```{r}
+## 4.11 Expectation ========
+```
+

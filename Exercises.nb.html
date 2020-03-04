@@ -229,18 +229,43 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudlstYygxLDMpXVxuXG5gYGAifQ== -->
-<pre class="r"><code>v[-c(1,3)]
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtKHI+PTIpLzEwXjRcblxuYGBgIn0= -->
+<pre class="r"><code>sum(r&gt;=2)/10^4
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAzICA3ICA5IDExXG4ifQ== -->
-<pre><code>[1]  3  7  9 11</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDAuNTExNlxuIn0= -->
+<pre><code>[1] 0.5116</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgMi4xMCBDb25kaXRpb25hbCBwcm9iYWJpbGl0eSA9PT09PT09PVxuXG4jIFBhZ2UgODA6IFNpbXVsYXRpbmcgdGhlIGZyZXF1ZW50aXN0IGludGVycHJldGF0aW9uXG5cblxuYGBgIn0= -->
+<pre class="r"><code>## 2.10 Conditional probability ========
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2sgZm9yIFByb2JhYmlsaXR5IEV4ZXJjaXNlcyINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCiANCg0KYGBge3J9DQojIyAxLjggUHJvYmFiaWxpdHkgYW5kIENvdW50aW5nID09PT09PT09DQoNCiMgUGFnZSAyOTogVmVjdG9ycw0KdiA8LSBjKDEsMyw1LDcsOSwxMSkNCnZbYygxLDMpXQ0KdlstYygxLDMpXQ0KdjIgPC0gMS8oMToxMDApXjINCg0KIyBQYWdlIDMwIEZhY3RvcmlhbHMgIA0KDQojIFBhZ2UgMzAtMzEgU2FtcGxpbmcgYW5kIHNpbXVsYXRpb24NCg0KYGBgDQoNCiANCg==</div>
+# Page 80: Simulating the frequentist interpretation
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgMy4xMSAgUmFuZG9tIHZhcmlhYmxlcyBhbmQgdGhlaXIgZGlzdHJpYnV0aW9ucyA9PT09PT09PVxuXG5gYGAifQ== -->
+<pre class="r"><code>## 3.11  Random variables and their distributions ========
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgNC4xMSBFeHBlY3RhdGlvbiA9PT09PT09PVxuYGBgIn0= -->
+<pre class="r"><code>## 4.11 Expectation ========</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2sgZm9yIFByb2JhYmlsaXR5IEV4ZXJjaXNlcyINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCiANCg0KYGBge3J9DQojIyAxLjggUHJvYmFiaWxpdHkgYW5kIGNvdW50aW5nID09PT09PT09DQoNCiMgUGFnZSAyOTogVmVjdG9ycw0KdiA8LSBjKDEsMyw1LDcsOSwxMSkNCnZbYygxLDMpXQ0KdlstYygxLDMpXQ0KdjIgPC0gMS8oMToxMDApXjINCg0KIyBQYWdlIDMwIEZhY3RvcmlhbHMgIA0KY2hvb3NlKDEwLDIpDQpjaG9vc2UoMTAwMDAwMCwxMDAwKQ0KbGNob29zZSgxMDAwMDAwLDEwMDApDQpmYWN0b3JpYWwoMTAwMCkNCmxmYWN0b3JpYWwoMTAwMCkNCg0KIyBQYWdlIDMwLTMxIFNhbXBsaW5nIGFuZCBzaW11bGF0aW9uDQpuIDwtIDEwOyBrIDwtIDYNCnNhbXBsZShuLGssIHJlcGxhY2UgPVRSVUUpDQpzYW1wbGUobGV0dGVycyxrKQ0Kc2FtcGxlKDUsNSxyZXBsYWNlPVRSVUUscHJvYiA9IGMoMC42LDAuMSwwLjEsMC4xLDAuMSkpDQoNCiMgUGFnZSAzMSBNYXRjaGluZyBwcm9ibGVtIHNpbXVsYXRpb24NCm4gPC0gMTA7ICAgICAgICAjIG51bWJlciBvZiBjYXJkcw0KciA8LSAxICAgICAgICMgbnVtYmVyIG9mIHRpbWVzIHJ1bm5pbmcgZXhwZXJpbWVudA0KcmVzdWx0czwtIHJlcGxpY2F0ZShyLHNhbXBsZShuKT09KDE6bikpICMgc2h1ZmZsZSBhbmQgY291bnQgbWF0Y2hlcw0KbnVtYmVyLnN1Y2Nlc3Nlczwtc3VtKHJlc3VsdHM+PTEpICMgc3VtIG51bWJlciBvZiBtYXRjaGVzDQpwcm9wb3J0aW9uLm1hdGNoZXMgPSBudW1iZXIuc3VjY2Vzc2VzLyhyKm4pICMgcHJvcG9ydGlvbiBvZiBtYXRjaGVzIHRvIHRvdGFsIG51bWJlciBvZiBleHBlcmltZW50cw0KDQojIFBhZ2UgMzIgQmlydGhkYXkgcHJvYmxlbQ0KcWJpcnRoZGF5KDAuNSkgICAgICAgICMgbnVtYmVyIG9mIHBlb3BsZSBuZWVkZWQgdG8gaGF2ZSBwcm9iYWJpbGl0eSBvZiBhdCBsZWFzdCA1MCUgb2YgYXQgbGVhc3Qgb25lIG1hdGNoDQpwYmlydGhkYXkoMjMsY29pbmNpZGVudCA9IDMpICAjIHByb2JhYmlsaXR5IG9mIGEgdHJpcGxlIGJpcnRoZGF5IG1hdGNoIGdpdmVuIDIzIHBlb3BsZSANCmIgPC0gc2FtcGxlICgzNjUsMjMscmVwbGFjZT1UUlVFKSAgIyBhc3NpZ24gYmlydGhkYXlzIHRvIDIzIHBlb3BsZSwgd2hlcmUgZWFjaCBvZiAzNjUgImRheXMiIiBoYXMgZXF1YWwgcHJvYmFiaWxpdHkNCnRhYmxlKGIpDQpyIDwtIHJlcGxpY2F0ZSgxMF40LCBtYXgodGFibGUoc2FtcGxlKDM2NSwyMyxyZXBsYWNlPVRSVUUpKSkpDQpzdW0ocj49MikvMTBeNCAjIGhvdyBtYW55IGRheXMgaGFkIGF0IGxlYXN0IHR3byBwZW9wbGUgYm9ybiBvbiB0aGF0IGRheSwgb24gYXZlcmFnZSBhZnRlciAxMF40IHJ1bnM/DQoNCmBgYA0KDQpgYGB7cn0NCiMjIDIuMTAgQ29uZGl0aW9uYWwgcHJvYmFiaWxpdHkgPT09PT09PT0NCg0KIyBQYWdlIDgwOiBTaW11bGF0aW5nIHRoZSBmcmVxdWVudGlzdCBpbnRlcnByZXRhdGlvbg0KDQoNCmBgYA0KIA0KYGBge3J9DQojIyAzLjExICBSYW5kb20gdmFyaWFibGVzIGFuZCB0aGVpciBkaXN0cmlidXRpb25zID09PT09PT09DQoNCmBgYA0KDQpgYGB7cn0NCiMjIDQuMTEgRXhwZWN0YXRpb24gPT09PT09PT0NCmBgYA0KDQo=</div>
 
 
 
