@@ -48,6 +48,19 @@ sum(r>=2)/10^4 # how many days had at least two people born on that day, on aver
 ## 2.10 Conditional probability ========
 
 # Page 80: Simulating the frequentist interpretation
+n <- 10^5       #number of families
+child1 <- sample(2,n,replace=TRUE)  # let 1 be a girl, 2 be a boy
+child2 <- sample(2,n,replace=TRUE)  
+
+n.b <- sum(child1==1) #number times child 1 is a girl
+n.ab <- sum(child1==1 & child2 ==1) # number times both children are girls
+
+p.a.given.b <- n.ab/n.b # prob. both girls given child1 is a girl
+
+n.c <- sum(child1==1 | child2 ==1) #number families either child 1 or 2 (or both) is a girl
+p.ab.given.c <- n.ab/n.c # prob. both girls given at least one is a girl
+
+# Page 82 Monty Hall simulation
 
 
 ```
