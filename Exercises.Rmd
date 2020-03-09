@@ -84,11 +84,17 @@ monty <- function() { #create an interactive function
 }
 monty()  
 
-
 ```
  
 ```{r}
 ## 3.11  Random variables and their distributions ========
+
+#Page 138 Distributions in R
+help(distributions)
+
+#Page 138 Binomial distribution
+dbinom(3,5,0.2)  # binomial PDF with inputs (k,n,p)
+pbinom(3,4,0.2)  # binomial CDF
 
 ```
 
