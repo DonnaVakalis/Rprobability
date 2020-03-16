@@ -94,11 +94,24 @@ help(distributions)
 
 #Page 138 Binomial distribution
 dbinom(3,5,0.2)  # binomial PDF with inputs (k,n,p)
-pbinom(3,4,0.2)  # binomial CDF
+pbinom(3,4,0.2)  # binomial CDF with inputs (k,n,p)
+rbinom(10,4,0.5) # rancom set of x binomial of (x,n,p)
+
+#Page 139 Hypergeometric
+dhyper(1,5,5,3) # hypergeometric X=k=1 from ~Hypergeometric(w=5,b=5,n=3)
+
+# Page 139 Discrete distributions with finite support
+# Use sample function sample (n,k) where n is the distribution and k is the number of elements to choose...but we can make x a vector of values with a corresponding vector, p, of probabilities (so x can be any distribution!)
+
+#example:
+x<-c(0,1,5,10) #values
+p <-c(0.25,0.5,0.1,0.15) # PMF of x
+sample(x,100,prob=p,replace=TRUE) #sample 100 times from distribution'x' 
 
 ```
 
 ```{r}
 ## 4.11 Expectation ========
+
 ```
 
