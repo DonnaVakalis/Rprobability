@@ -113,5 +113,6 @@ sample(x,100,prob=p,replace=TRUE) #sample 100 times from distribution'x'
 ```{r}
 ## 4.11 Expectation ========
 
+##Page 192 
 ```
 
