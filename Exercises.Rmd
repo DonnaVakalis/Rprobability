@@ -128,3 +128,11 @@ mean(r) # expected number of matches (the mean)
 365*(1-(364/365)^k) #the theoretic value
 ```
 
+```{r}
+## 5.9 R  ========
+
+##Page 253 Uniform, Normal, and Expoential distributions
+
+
+```
+
