@@ -113,6 +113,18 @@ sample(x,100,prob=p,replace=TRUE) #sample 100 times from distribution'x'
 ```{r}
 ## 4.11 Expectation ========
 
-##Page 192 
+##Page 193 Matching simulation
+
+n <- 100
+r <- replicate(10^4,sum(sample(n)==(1:n))) # looking at chance matches of a random sample of a deck of n cards ...
+mean(r) # expected number of matches (the mean)
+
+##Page 193 Distinct birthday simulation
+ k <- 20 # group of 20 people
+ r <- replicate (10^4, {bdays <- sample(365,k,replace = TRUE);
+                        length(unique(bdays))}) #we sample k times from 1:365, then remove duplicates with unique(bdays) and length() calculatates the length AFTER duplicates have been removed... so R contains the # of distinct birhtdays
+ 
+ mean(r) # the empirical value with 10^4 trials
+365*(1-(364/365)^k) #the theoretic value
 ```
 
