@@ -132,7 +132,12 @@ mean(r) # expected number of matches (the mean)
 ## 5.9 R  ========
 
 ##Page 253 Uniform, Normal, and Expoential distributions
+dunif(0.1,0,1) #dunif(x,a,b) is PDF of Unif(a,b) at x
+punif(0.5,0,1) #CDF at x=0.5
+runif(10,0,1) # generate x=10 random numbers from unif(0,1)
 
+dnorm(0,0,1) #dnorm(x,mu,sd) is PDF of normal(mu,sd) at x ***NOTE: sd NOT variance**
+rnorm(10,0,1) #generate 10 random realizations from a standard normal
 
 ```
 
