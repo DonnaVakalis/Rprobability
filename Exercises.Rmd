@@ -141,7 +141,7 @@ rnorm(10,0,1) #generate 10 random realizations from a standard normal
 
 dexp(3,3) #dexp(x,lamda)
 
-# Page 254 Plots in R
+## Page 254 Plots in R
 curve(dnorm, from=-3, to=3, n=10) # plot the standard normal from -3 to 3 evaulated at 10 points
 
 x <- seq(-3,3,0.1) #like matlab
@@ -149,14 +149,16 @@ y <- dnorm(x,0,1) #so y consists of standard normal evaluated at points x
 #plot(x,y)
 plot(x,y,type="b", col="red",lty=1, lwd=1)
 
-# Page 254 Universality with Logistic
+## Page 254 Universality with Logistic
 
-u<- runif(10^4)
-x <- log(u/(1-u)) 
-hist(x, breaks=100) 
+u<- runif(10^4) # start with random realizations from a uniform distrbution
+x <- log(u/(1-u)) # use inverse function to get x values that should resemble a logistic distribution
+hist(x, breaks=100) # check that it "looks" like a logistic
 
-y<-rlogis(10^4)
-hist(y, breaks=100)
+y<-rlogis(10^4) # check by more directly generating random realizations from a logistic 
+hist(y, breaks=100) # yep looks the same as above
+
+## Page 255 Poisson process
 
 ```
 
