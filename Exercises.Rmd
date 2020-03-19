@@ -158,7 +158,16 @@ hist(x, breaks=100) # check that it "looks" like a logistic
 y<-rlogis(10^4) # check by more directly generating random realizations from a logistic 
 hist(y, breaks=100) # yep looks the same as above
 
-## Page 255 Poisson process
+## Page 255 Poisson process simulation
 
+# the times in between arrivals are exponential, so first we generate "interarrival" times as exponential distribution with rate parameter lambda
+n<- 50 # could be anything
+lambda <- 3 # rate (3 per unit of time)
+x <- rexp(n,lambda) 
+hist(x) # take a look
+t<- cumsum(x) # final step: convert the interarrival times to arrival times using cumulative sum function
+
+x_axis <- seq(1:50)
+plot(x_axis,t)
 ```
 
