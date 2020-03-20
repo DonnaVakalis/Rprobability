@@ -129,7 +129,7 @@ mean(r) # expected number of matches (the mean)
 ```
 
 ```{r}
-## 5.9 R  ========
+## 5.9 R Continuous and Random Variables  ========
 
 ##Page 253 Uniform, Normal, and Expoential distributions
 dunif(0.1,0,1) #dunif(x,a,b) is PDF of Unif(a,b) at x
@@ -169,5 +169,13 @@ t<- cumsum(x) # final step: convert the interarrival times to arrival times usin
 
 x_axis <- seq(1:50)
 plot(x_axis,t)
+```
+
+```{r}
+## 6.9 R Momens  ========
+
+##Page 293  
+
+
 ```
 
