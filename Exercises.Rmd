@@ -182,6 +182,16 @@ curve(M,from = -3,to=3) # check out a plot of the curve for range of t
 g <- function(t,mean=0,sd=1) {exp(mean*t + sd^2*t^2/2)} # general MGF for N(mean,sd^2), and notice we set useful variable names and default values
 g(t=1,mean=2,sd=3)
 
+##Page 294 Moments
 
+help(dnorm)
+g <- function(x) x^6*dnorm(x) # recall dnorm give the pdf 
+integrate (g, lower=-Inf, upper=Inf) #do the "integral" numerically!  using the integrate command
+
+#check that the 2nd moment, and variance, of a Unif(-1,1) r.v. is 1/3
+h<-function(x) x^2*dunif(x,-1,1) # x^2 so second moment
+integrate(h, lower=-1, upper=1)
+
+## TESTING ...problem with git
 ```
 
