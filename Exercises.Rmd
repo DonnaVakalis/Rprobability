@@ -192,6 +192,11 @@ integrate (g, lower=-Inf, upper=Inf) #do the "integral" numerically!  using the 
 h<-function(x) x^2*dunif(x,-1,1) # x^2 so second moment
 integrate(h, lower=-1, upper=1)
 
-## TESTING ...problem with git
+g<-function(k) k^2*dpois(k,7) #2nd moment of X~Pois(7)
+sum(g(0:100)) #using sum for discrete series of r.v.s
+
+# finding the moment of a sample of i.i.d.s ....
+
+
 ```
 
