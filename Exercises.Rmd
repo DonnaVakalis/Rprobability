@@ -195,8 +195,24 @@ integrate(h, lower=-1, upper=1)
 g<-function(k) k^2*dpois(k,7) #2nd moment of X~Pois(7)
 sum(g(0:100)) #using sum for discrete series of r.v.s
 
-# finding the moment of a sample of i.i.d.s ....
+# finding the moment of a sample of 100 i.i.d.s ....
+x <- rnorm(100)
+mean(x^6) # 6th sample moment
 
+# R built-in functions for mean, variance and sd
+z <- rnorm(100)
+mean(z)
+var(z)
+sd(z)
+
+# Define function for skewness
+skew <-
+    function(x) {
+        central.moment <-
+            mean((x-mean(x))^3)
+            central.moment/(sd(x)^3)
+    }
+skew(x)
 
 ```
 
