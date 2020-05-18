@@ -214,5 +214,13 @@ skew <-
     }
 skew(x)
 
+# Define a function for kurtosis
+
+#kurt <
+#   function(x) {
+#        centralmoment < mean((xmean(x))4)
+        
+#    }
+
 ```
 
