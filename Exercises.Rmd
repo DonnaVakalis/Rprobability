@@ -222,5 +222,12 @@ kurt <-
         centralmoment/sd(x)^4 - 3
     }
 kurt(x)
+
+## Page 296 Medians and modes
+
+g <- function(x) pexp(x)-1/2
+uniroot(g,lower=0,upper=1)
+
+
 ```
 
