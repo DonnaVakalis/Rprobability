@@ -1,4 +1,4 @@
 # reclassify appropriate files as R:
 *.rmd linguist-language=R
-*.html linguist-language=RMarkdown
-*.rProj linguist-language=RMarkdown
+*.html linguist-language=R
+*.rProj linguist-language=R
