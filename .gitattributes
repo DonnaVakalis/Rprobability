@@ -1,0 +1,3 @@
+# Example of a `.gitattributes` file which reclassifies `.rmd` files as R:
+*.rmd linguist-language=R
+*.html linguist-language=RMarkdown
