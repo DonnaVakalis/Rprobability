@@ -1,0 +1,90 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+ 
+
+```{r}
+
+# +++++++++++++++++ #
+#                   # 
+#    LIBRARIES
+#                   #
+# +++++++++++++++++ #
+
+# Installation of required packages
+install.packages("dagitty")
+install.packages("ggdag")
+install.packages("causaleffects")
+
+
+```
+
+
+```{r}
+
+
+# Load packages
+
+library(dagitty)
+library(ggdag)
+
+library(causaleffect)
+
+library(readr) #to read csv 
+library(tidyverse) #for everything 
+library(dplyr) #for everything 
+
+# +++++++++++++++++ #
+#                   # 
+#READ IN SCRAPED DATA
+#                   #
+# +++++++++++++++++ #
+
+files.lit <- 
+    list.files(path = "RawFiles_do_not_upload/", # read all excel fileNAMES from this folder
+                       pattern = "*.csv",
+                       full.names = TRUE,
+                       recursive = FALSE) %>% 
+    tbl_df() %>% # make the list into a dataframe, default name of column is "value"
+    rename(Filenames = value)%>%
+    mutate(myFiles = purrr::map(Filenames, function(x) {  #for each filename, read in the file (gets nested)
+        read_csv(x)})) %>% 
+    unnest(myFiles)  
+
+# +++++++++++++++++ #
+#                   # 
+#ORGANIZE DATA BY KEY
+#                   #
+# +++++++++++++++++ # 
+
+dat.lit <-
+    files.lit %>%
+    select(Filenames,Title,Year,Cites,Authors) %>%  # parse to only the relevant columns
+    filter(Cites>1) %>% # get rid of a uncited papers
+    mutate(Category = case_when(  #simplify the categories
+            Filenames=="RawFiles_do_not_upload/Energy_Buildings_PoPCites.csv" ~ "Energy",
+            Filenames == "RawFiles_do_not_upload/Health_Buildings_PoPCites.csv" ~ "Health",
+            Filenames == "RawFiles_do_not_upload/IEQ_searchPoPMetrics.csv" ~ "IEQ",
+            TRUE ~ "Other")) %>%
+    mutate(Category = as.factor(Category)) %>% # needs to be a factor for grouping later on
+    select(-Filenames) %>% # we created Categories for this instead 
+    drop_na(Year) # Get rid of papers without a publication date (3 in Health and 3 in IEQ)
+    
+dat.lit %>% # just a quick check to see spread of years of publication, by category
+    group_by(Category) %>%
+    summarize(count=n(),ealiest=min(Year))
+
+dat.lit2 <- # make new categories for overlaps 
+    dat.lit %>%
+    group_by(Title,Year,Cites,Authors) %>%
+    summarize(Recategorized = paste(Category,collapse = '_'))  # # also needs to be a factor for grouping later on...
+
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
