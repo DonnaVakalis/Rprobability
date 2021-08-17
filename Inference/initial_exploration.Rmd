@@ -13,13 +13,35 @@ output: html_notebook
 # +++++++++++++++++ #
 
 # Installation of required packages
-install.packages("dagitty")
-install.packages("ggdag")
-install.packages("causaleffects")
+
+install.packages("tableone")
+
+install.packages("Matching")
+
+install.packages("MatchIt")
+
+
+
+library(tableone)
+
+library(Matching)
+
+library(MatchIt)
+
+
 
 
 ```
+```{r}
+data(lalonde)
 
+```
+
+```{r}
+install.packages("dagitty")
+install.packages("ggdag")
+install.packages("causaleffects")
+```
 
 ```{r}
 
