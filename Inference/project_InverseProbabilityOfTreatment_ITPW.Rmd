@@ -74,20 +74,45 @@ pmodel <- glm(treat ~ age + educ + race + married + nodegree + re74 + re75,
 
 # pull out propensity scores
 #pscores <- pmodel$fitted.values
-ps <- predict(pmodel, type = "response")
+dat$ps <- predict(pmodel, type = "response")
 
 # create weights
-weight <- ifelse(pmodel$treat==1,1/(ps),1/(1-ps))
+dat$weight <- ifelse(dat$treat==1,1/(dat$ps),1/(1-dat$ps))
 
-#apply weights to data
+# get min and max
+
+summary(dat$weight)
+
+# Min 1.01
+# Max 40.1
+
+```
+ 
+
+
+```{r}
+# +++++++++++++++++ #
+#                   # 
+# QUESTION 2: 
+# Find the standardized differences for each
+# confounder on the weighted (pseudo) population. What is the standardized
+# difference for nodegree?    
+#                   #
+# +++++++++++++++++ #
+
+# Use weights to create pseudo population
 weighted.dat <- svydesign(ids = ~1, data = dat, weights = ~weight)
 
+# Calculate smd
+
 
 ```
+
 ```{r}
-summary(ps)
-```
 
+
+
+```
 
 ```{r}
 # create a 'table one' 
