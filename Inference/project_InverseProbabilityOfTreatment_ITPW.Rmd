@@ -103,147 +103,64 @@ summary(dat$weight)
 # Use weights to create pseudo population
 weighted.dat <- svydesign(ids = ~1, data = dat, weights = ~weight)
 
-# Calculate smd
-
-
-```
-
-```{r}
-
-
-
-```
-
-```{r}
-# create a 'table one' 
+# use package to create a 'table one' 
 weighted.table <- svyCreateTableOne(vars= xvars, 
                                     strata = "treat",
                                     data = weighted.dat)
+
+# show smds
+print(weighted.table, smd = TRUE)
+
+# standardized diff for nodegree is 0.112
+
 ```
-
-
-
 
 ```{r}
 
 # +++++++++++++++++ #
 #                   # 
-# QUESTION 3:
-# Fit a propensity score model. 
-# Include the 8 confounding variables in the model as predictors, 
-# with no interaction terms or non-linear terms (such as squared terms). 
-
-# What are the minimum and maximum values of the estimated propensity score? 
-#                   #
+# QUESTION 3: 
+# Using IPTW, find the estimate and 95% confidence
+# interval for the average causal effect. This can be obtained from svyglm
+#
 # +++++++++++++++++ #
 
+# fit a marginal structural model
+msm <- svyglm(re78 ~ treat, design = weighted.dat)
 
-# Use a logistic regression model, where the outcome is treatment. 
-psmodel <- glm(treat~age + educ + race + married + nodegree + re74 + re75,
-               family=binomial(),
-               data=dat)
-#summary(psmodel)
-
-
-# Obtain the propensity score for each subject.
-pscore<-psmodel$fitted.values
-
-print(min(pscore))
-print(max(pscore))
-```
-```{r}
-
-# +++++++++++++++++ #
-#                   # 
-# QUESTION 4 and 5:
-# Now carry out propensity score matching using the Match function.  
-# What is the standardized difference for married?
-#                   #
-# +++++++++++++++++ #
-
-set.seed(931139)
-
-# Use options to specify pair matching, without replacement, no caliper. 
-psmatch <- Match(Tr=dat$treat,
-                 M=1,
-                 X=pscore, # Match on the propensity score itself, not logit of the propensity score.  
-                 replace=FALSE)
-
-# organize tableOne for matched data
-matched <- dat[unlist(psmatch[c("index.treated","index.control")]),]
-matchedtab1 <- CreateTableOne(vars=xvars, 
-                              strata = "treat",
-                              data=matched,
-                              test=FALSE)
-print(matchedtab1, smd=TRUE)
+# get difference, and CI
+coef(msm) # treatment 224.68
+confint(msm) # IC [-1562.9 , 2012.2]
 
 ```
+
 ```{r}
 # +++++++++++++++++ #
 #                   # 
-# QUESTION 6:
-# Re-do the matching, but use a caliper this time. Set the caliper=0.1   
-# How many matched pairs are there?
-#                   #
+# QUESTION 4: 
+# Now truncate the weights at the 1st and 99th percentiles. 
+# Using IPTW with the truncated weights, find the
+# estimate and 95% confidence interval for the average causal effect 
+#
 # +++++++++++++++++ #
 
-set.seed(931139)
+# redo the underlying weighted model using ipw library and use the built-in trunc setting
+weighted.model <- ipwpoint(exposure = treat,
+                           family = "binomial",
+                           link= "logit",
+                           denominator = ~age + educ + race + married + nodegree + re74 + re75,
+                           data = dat,
+                           trunc = 0.01)
+  
 
-# Use options to specify pair matching, without replacement, WITH caliper 
-psmatch <- Match(Tr=dat$treat,
-                 M=1,
-                 X=pscore, # Match on the propensity score itself, not logit of the propensity score.  
-                 replace=FALSE,
-                 caliper = 0.1)
+# use survey package again, but with new weights
+dat$wt <- weighted.model$weights.trunc
 
-# organize tableOne for matched data
-matched2 <- dat[unlist(psmatch[c("index.treated","index.control")]),]
-matchedtab2 <- CreateTableOne(vars=xvars, 
-                              strata = "treat",
-                              data=matched2,
-                              test=FALSE)
-print(matchedtab2, smd=TRUE)
-```
-
-
-```{r}
-
-# +++++++++++++++++ #
-#                   # 
-# QUESTION 7:
-# For the matched data, what is 
-# the mean of real earnings in 1978 for treated subjects minus
-# the mean of real earnings in 1978 for untreated subjects? 
-#                   #
-# +++++++++++++++++ #
-
-result<-matched2 %>%
-  group_by(treat) %>%
-  summarize(mean_size = mean(re78))
-
-# difference
-result[result$treat==1,"mean_size"] - result[result$treat==0,"mean_size"]
-
-```
-```{r}
-# +++++++++++++++++ #
-#                   # 
-# QUESTION 8:
-# Carry out a paired t-test for the effect of
-# treatment on earnings. 
-# What are the values of the 95% confidence interval? 
-#                   #
-# +++++++++++++++++ #
-
-# compare treated re78 to control re78
-
-treated <- matched2 %>%
-    filter(treat==1)  
-    
-    
-control<- matched2 %>%
-    filter(treat==0)  
-
-t.test(treated$re78,control$re78,paired=TRUE)
+msm.truncated <- svyglm(re78 ~ treat, design = svydesign(~1,
+                                                         weights= ~wt,
+                                                         data = dat))
+# get values of interest:
+coef(msm.truncated) # treat 486.94
+confint(msm.truncated) # CI -1093.8, 2067.7
 
 ```
